@@ -1,8 +1,8 @@
 {
-  "name": "MwK-Musics PyTGcalls",
+  "name": "Baws FM",
   "description": "Telegram Bot to Play Audio And Live Streams in PyTGcalls",
-  "logo": "https://telegra.ph/file/a3937c3ddc19bb3300d89.jpg",
-  "repository": "https://github.com/shamilhabeebnelli/MwK-Musics",
+  "logo": "ttps://telegra.ph/file/3330043776a2146b5e2dd.jpg",
+  "repository": "https://github.com/OfficialBawwa/BawsFM_Bot",
   "keywords": [
     "telegram",
     "bot",
@@ -51,12 +51,12 @@
     },
     "STREAM_URL": {
       "description": "URL of Radio station or Youtube live video url to stream with /r command",
-      "value": "https://bit.ly/MwKradio",
+      "value": "hhttps://bit.ly/3isdoMF",
       "required": true
     },
     "REPLY_MESSAGE": {
       "description": "No_PM message for session account",
-      "value": "Hi Iam a bot, i can stream audios on vc.",
+      "value": "Hi I'm a bot, i can stream audios on vc. Powered by @HARP_Productions",
       "required": false
     },
     "ADMIN_ONLY": {
