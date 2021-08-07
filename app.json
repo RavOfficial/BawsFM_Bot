@@ -50,8 +50,8 @@
       "required": true
     },
     "STREAM_URL": {
-      "description": "URL of Radio station or Youtube live video url to stream with /r command",
-      "value": "hhttps://bit.ly/3isdoMF",
+      "description": "URL of Radio station or Youtube live video url to stream with /r command. If you want any streaming url of bawsfm.com contact me on @Baws_Talks",
+      "value": "http://stream.zeno.fm/1fuu8k86t18uv",
       "required": true
     },
     "REPLY_MESSAGE": {
