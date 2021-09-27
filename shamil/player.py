@@ -48,13 +48,13 @@ playlist=Config.playlist
 
 @Client.on_message(filters.command(["p", f"p@{U}"]) | filters.audio & filters.private)
 async def yplay(_, message: Message):
-    if ADMIN_ONLY == "Y":
+    if ADMIN_ONLY == "N":
         admins=[626664225]
         grpadmins=await _.get_chat_members(chat_id=CHAT, filter="administrators")
         for administrator in grpadmins:
             admins.append(administrator.user.id)
         if message.from_user.id not in admins:
-            await message.reply_sticker("CAACAgUAAxkBAAIJM2DTpi52NSM-O-KnYcC1IzbJos8HAAK6AQACsm0wVffnRbQlKgeTHwQ")
+            await message.reply_sticker("CAACAgEAAx0CSE4L5wABBEecYVHqJO9RZq4TCmeYw-lLbuVaRb4AAlkBAAJGtIlG2DxBFsY2FpohBA")
             await message.delete()
             return
     type=""
@@ -86,7 +86,7 @@ async def yplay(_, message: Message):
                 type="query"
                 ysearch=query
         else:
-            await message.reply_text("lmao 😇, Lemma Gib Me something to play or reply /p to any audio file.")
+            await message.reply_text("lmao, Gib Me something to play or reply /p to any audio file.")
             return
     user=f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
     group_call = mp.group_call
@@ -96,13 +96,13 @@ async def yplay(_, message: Message):
             return
         if playlist and playlist[-1][2] \
                 == m_audio.audio.file_id:
-            await message.reply_text(f"📜 Already Qued Bruh")
+            await message.reply_text(f" Already in Que...")
             return
         data={1:m_audio.audio.title, 2:m_audio.audio.file_id, 3:"telegram", 4:user}
         playlist.append(data)
         if len(playlist) == 1:
             m_status = await message.reply_text(
-                f"fetching data from m.youtube.com"
+                f"fetching data, Please wait..."
             )
             await mp.download_audio(playlist[0])
             if 1 in RADIO:
@@ -125,10 +125,10 @@ async def yplay(_, message: Message):
             await m_status.delete()
             print(f"- START PLAYING: {playlist[0][1]}")
         if not playlist:
-            pl = f"📻 Nothing Is On Que"
+            pl = f" Nothing Is On Que"
         else:   
             pl = f"🎧 **Que**:\n" + "\n".join([
-                f"**{i}**. **📻{x[1]}**\n   👤**Requested by:** {x[4]}"
+                f"**{i}**. **{x[1]}**\n   **Requested by:** {x[4]}"
                 for i, x in enumerate(playlist)
                 ])
         if LOG_GROUP and message.chat.id != LOG_GROUP:
@@ -141,7 +141,7 @@ async def yplay(_, message: Message):
             await message.reply_text(pl)
     if type=="youtube" or type=="query":
         if type=="youtube":
-            msg = await message.reply_text("**Fetching Song Data From YouTube...**")
+            msg = await message.reply_text("**Fetching Song Data...**")
             url=yturl
         elif type=="query":
             try:
@@ -152,7 +152,7 @@ async def yplay(_, message: Message):
                 title = results[0]["title"][:40]
             except Exception as e:
                 await msg.edit(
-                    "Sed Nothing Is Found For Your Query, Ensure spelling or Try inline"
+                    "Sed Nothing Is Found For Your Query, God bless you 😂"
                 )
                 print(str(e))
                 return
@@ -200,10 +200,10 @@ async def yplay(_, message: Message):
             await m_status.delete()
             print(f"- START PLAYING: {playlist[0][1]}")
         if not playlist:
-            pl = f"📻 Nothing Is On Que"
+            pl = f" Nothing Is On Que"
         else:   
             pl = f"🎧 **Que**:\n" + "\n".join([
-                f"**{i}**. **📻{x[1]}**\n   👤**Requested by:** {x[4]}"
+                f"**{i}**. **{x[1]}**\n   **Requested by:** {x[4]}"
                 for i, x in enumerate(playlist)
                 ])
         if LOG_GROUP and message.chat.id != LOG_GROUP:
@@ -220,13 +220,13 @@ async def yplay(_, message: Message):
    
 @Client.on_message(filters.command(["d", f"d@{U}"]))
 async def deezer(_, message):
-    if ADMIN_ONLY == "Y":
+    if ADMIN_ONLY == "N":
         admins=[626664225]
         grpadmins=await _.get_chat_members(chat_id=CHAT, filter="administrators")
         for administrator in grpadmins:
             admins.append(administrator.user.id)
         if message.from_user.id not in admins:
-            await message.reply_sticker("CAACAgUAAxkBAAIJM2DTpi52NSM-O-KnYcC1IzbJos8HAAK6AQACsm0wVffnRbQlKgeTHwQ")
+            await message.reply_sticker("CAACAgEAAx0CSE4L5wABBEecYVHqJO9RZq4TCmeYw-lLbuVaRb4AAlkBAAJGtIlG2DxBFsY2FpohBA")
             await message.delete()
             return
     user=f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
@@ -234,11 +234,11 @@ async def deezer(_, message):
         text = message.text.split(" ", 1)
         query = text[1]
     else:
-        await message.reply_text("lmao 😇, lemma gib me anything to play : `/d <song name>`")
+        await message.reply_text("lmao, gib me anything to play : `/d <song name>`")
         return
     user=f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
     group_call = mp.group_call
-    msg = await message.reply("**Fetching Required Song From Deezer...**")
+    msg = await message.reply("**Fetching Required Song...**")
     try:
         songs = await arq.deezer(query,1)
         if not songs.ok:
@@ -248,7 +248,7 @@ async def deezer(_, message):
         title = songs.result[0].title
 
     except:
-        await msg.edit("Sed Lyf... Nothing to be found")
+        await msg.edit("Sed Lyf... Nothing to be found. God bless you! 😂")
         return
     data={1:title, 2:url, 3:"deezer", 4:user}
     playlist.append(data)
@@ -283,7 +283,7 @@ async def deezer(_, message):
         pl = f"{emoji.NO_ENTRY} Empty playlist"
     else:
         pl = f"{emoji.PLAY_BUTTON} **Playlist**:\n" + "\n".join([
-            f"**{i}**. **📻{x[1]}**\n   👤**Requested by:** {x[4]}"
+            f"**{i}**. **{x[1]}**\n   **Requested by:** {x[4]}"
             for i, x in enumerate(playlist)
             ])
     if LOG_GROUP and message.chat.id != LOG_GROUP:
@@ -305,7 +305,7 @@ async def player(_, m: Message):
         return
     else:
         pl = f"{emoji.PLAY_BUTTON} **Playlist**:\n" + "\n".join([
-            f"**{i}**. **📻{x[1]}**\n   👤**Requested by:** {x[4]}"
+            f"**{i}**. **{x[1]}**\n   **Requested by:** {x[4]}"
             for i, x in enumerate(playlist)
             ])
     await m.reply_text(
@@ -334,10 +334,10 @@ async def skip_track(_, m: Message):
     if len(m.command) == 1:
         await mp.skip_current_playing()
         if not playlist:
-            pl = f"📻 Empty Que, Like Your Brain"
+            pl = f" Empty Que, Like Your Brain"
         else:
             pl = f"{emoji.PLAY_BUTTON} **Playlist**:\n" + "\n".join([
-            f"**{i}**. **📻{x[1]}**\n   👤**Requested by:** {x[4]}"
+            f"**{i}**. **{x[1]}**\n   **Requested by:** {x[4]}"
             for i, x in enumerate(playlist)
             ])
         if LOG_GROUP and m.chat.id != LOG_GROUP:
@@ -361,10 +361,10 @@ async def skip_track(_, m: Message):
                     text.append(f"{emoji.CROSS_MARK} {i}")
             await m.reply_text("\n".join(text))
             if not playlist:
-                pl = f"📻 Empty Que, Like your Brain"
+                pl = f"Empty Que, Like your Brain"
             else:
                 pl = f"{emoji.PLAY_BUTTON} **Playlist**:\n" + "\n".join([
-                    f"**{i}**. **📻{x[1]}**\n   👤**Requested by:** {x[4]}"
+                    f"**{i}**. **{x[1]}**\n   **Requested by:** {x[4]}"
                     for i, x in enumerate(playlist)
                     ])
             if LOG_GROUP and m.chat.id != LOG_GROUP:
@@ -383,7 +383,7 @@ async def skip_track(_, m: Message):
 async def join_group_call(client, m: Message):
     group_call = mp.group_call
     if group_call.is_connected:
-        await m.reply_text(f"{emoji.ROBOT} Already joined VC")
+        await m.reply_text(f"{emoji.ROBOT} Yo man, Already joined VC")
         return
     await mp.start_call()
     chat = await client.get_chat(CHAT)
@@ -406,7 +406,7 @@ async def leave_voice_chat(_, m: Message):
     await m.delete()
 
 
-@Client.on_message(filters.command(["mwk", f"mwk@{U}"]) & filters.user(ADMINS))
+@Client.on_message(filters.command(["whotto", f"whotto@{U}"]) & filters.user(ADMINS))
 async def list_voice_chat(client, m: Message):
     group_call = mp.group_call
     if group_call.is_connected:
@@ -500,7 +500,7 @@ async def mute(_, m: Message):
         await m.reply_text("Nothing playing to mute.")
         return
     group_call.set_is_mute(True)
-    await m.reply_text(f"🤐 Muted")
+    await m.reply_text(f" Muted")
     await m.delete()
 
 @Client.on_message(filters.command(["um", f"um@{U}"]) & filters.user(ADMINS))
@@ -520,17 +520,17 @@ async def show_playlist(_, m: Message):
         await m.reply_text("No active VC.")
         return
     if not playlist:
-        pl = f"📜 Empty Playlist."
+        pl = f" Empty Playlist."
     else:
         pl = f"{emoji.PLAY_BUTTON} **Playlist**:\n" + "\n".join([
-            f"**{i}**. **📻{x[1]}**\n   👤**Requested by:** {x[4]}"
+            f"**{i}**. **{x[1]}**\n   **Requested by:** {x[4]}"
             for i, x in enumerate(playlist)
             ])
     await m.reply_text(pl)
     await m.delete()
 
-admincmds=["j", "um", "m", "l", "cl", "mwk", "ps", "resume", "sp", "sk", "r", "sr", "rp", "update", f"j@{U}", f"um@{U}", f"m@{U}", f"l@{U}", f"cl@{U}", f"mwk@{U}", f"ps@{U}", f"rs@{U}", f"sp@{U}", f"sk@{U}", f"r@{U}", f"sr@{U}", f"rp@{U}", f"update@{U}"]
+admincmds=["j", "um", "m", "l", "cl", "whotto", "ps", "resume", "sp", "sk", "r", "sr", "rp", "update", f"j@{U}", f"um@{U}", f"m@{U}", f"l@{U}", f"cl@{U}", f"whotto@{U}", f"ps@{U}", f"rs@{U}", f"sp@{U}", f"sk@{U}", f"r@{U}", f"sr@{U}", f"rp@{U}", f"update@{U}"]
 
 @Client.on_message(filters.command(admincmds) & ~filters.user(ADMINS))
 async def notforu(_, m: Message):
-    await m.reply_sticker("CAACAgUAAxkBAAIJM2DTpi52NSM-O-KnYcC1IzbJos8HAAK6AQACsm0wVffnRbQlKgeTHwQ")
+    await m.reply_sticker("CAACAgEAAx0CSE4L5wABBEecYVHqJO9RZq4TCmeYw-lLbuVaRb4AAlkBAAJGtIlG2DxBFsY2FpohBA")
