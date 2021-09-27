@@ -37,7 +37,7 @@ HELP = """
 • `/song` __Download Song from youtube__
 • `/c`  __Show current playing song__
 • `/help` __Show help for commands__
-• `/mwk` __Shows the playlist__
+• `/whotto` __Shows the playlist__
 • `/stickerid` __To Get Id Of Replied Sticker__
 
 🎶 **Admin Commands**:
@@ -46,7 +46,7 @@ HELP = """
 • `/sk [n]` __...Skip current or n where n >= 2__
 • `/j`  __Join voice chat__
 • `/l`  __Leave current voice chat__
-• `/mwk`  __Check which VC is joined__
+• `/whotto`  __Check which VC is joined__
 • `/sp`  __Stop playing__
 • `/r` __Start Radio__
 • `/sr` __Stops Radio Stream__
@@ -58,8 +58,13 @@ HELP = """
 • `/um`  __Unmute in VC__
 • `/update` __Update Current Settings n Restarts the Bot__
 
+🎶 **Currently Playing**
+• Baws FM English Station
+• @HARP_Chat Voice Chat
+
+
 © Powered By 
-[ __@HARP_Tech__ ]
+[ __@HARP_Productions__ ]
 """
 
 
